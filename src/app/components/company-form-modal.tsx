@@ -6,6 +6,8 @@ import Modal, { ModalProps } from '@/app/components/modal';
 
 export interface CompanyFormModalProps extends ModalProps {
   onSubmit: CompanyFormProps['onSubmit'];
+  label: string;
+  placeholder?: string | undefined;
 }
 
 export default function CompanyFormModal({
@@ -14,7 +16,9 @@ export default function CompanyFormModal({
 }: CompanyFormModalProps) {
   return (
     <Modal {...rest}>
-      <CompanyForm onSubmit={onSubmit} />
+      <CompanyForm
+        onSubmit={onSubmit}
+      />
     </Modal>
   );
 }

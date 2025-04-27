@@ -38,7 +38,7 @@ export default function CompanyRow({
         <a href={`/companies/${id}`}>{company}</a>
       </td>
       <td>
-        <StatusLabel status={status}>{labelByStatus[status]}</StatusLabel>
+        <StatusLabel status={status} disabled={false}>{labelByStatus[status]}</StatusLabel>
       </td>
       <td>
         <div className="inline-flex items-center gap-1">

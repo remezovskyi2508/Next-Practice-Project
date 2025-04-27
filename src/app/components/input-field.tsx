@@ -5,6 +5,10 @@ import { Field } from 'formik';
 
 export interface InputFieldProps {
   label?: string;
+  name: string; 
+  placeholder?: string;  
+  type?: string; 
+  id?: string; 
 }
 
 export default function InputField({ label, id, ...rest }: InputFieldProps) {
