@@ -1,5 +1,5 @@
-import StatCard from './stat-card';
+import StatCard from '@/app/components/stat-card/stat-card';
 
-export * from './stat-card';
+export * from '@/app/components/stat-card/stat-card';
 
 export default StatCard;

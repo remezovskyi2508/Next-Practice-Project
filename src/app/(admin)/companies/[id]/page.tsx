@@ -15,6 +15,9 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <Header>Company ({id})</Header>
+      <div className="py-6 px-10">
+        <p>{`Information about company (${id})`}</p>{' '}
+      </div>
     </>
   );
 }
