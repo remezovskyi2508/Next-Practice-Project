@@ -1,3 +1,29 @@
+export interface Country {
+  id: string;
+  title: string;
+  count: number;
+}
+
+export interface Category {
+  id: string;
+  title: string;
+  count: number;
+}
+
+const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+
+const buildUrl = (...paths: string[]) =>
+  `https://${PROJECT_TOKEN}.mockapi.io/crm/${paths.join('/')}`;
+
+const sendRequest = async <T>(url: string, init?: RequestInit) => {
+  const res = await fetch(url, init);
+  if (!res.ok) {
+    throw new Error(await res.text());
+  }
+
+  return (await res.json()) as T;
+};
+
 export const getSummaryStats = () => {
   return Promise.resolve({
     promotions: 427,
@@ -35,77 +61,10 @@ export const getSummaryPromotions = () => {
   return Promise.resolve(items);
 };
 
-export const getSummaryCategories = () => {
-  return Promise.resolve([
-    {
-      categoryId: 1,
-      categoryTitle: 'Products',
-      count: 4,
-    },
-    {
-      categoryId: 2,
-      categoryTitle: 'Products',
-      count: 8,
-    },
-    {
-      categoryId: 3,
-      categoryTitle: 'Products',
-      count: 26,
-    },
-    {
-      categoryId: 4,
-      categoryTitle: 'Products',
-      count: 1,
-    },
-    {
-      categoryId: 5,
-      categoryTitle: 'Products',
-      count: 37,
-    },
-    {
-      categoryId: 6,
-      categoryTitle: 'Products',
-      count: 22,
-    },
-    {
-      categoryId: 7,
-      categoryTitle: 'Products',
-      count: 4,
-    },
-    {
-      categoryId: 8,
-      categoryTitle: 'Products',
-      count: 4,
-    },
-  ]);
+export const getCategories = (init?: RequestInit) => {
+  return sendRequest<Category[]>(buildUrl('categories'), init);
 };
 
-export const getSummaryCountries = () => {
-  return Promise.resolve([
-    {
-      countryId: 1,
-      countryTitle: 'Canada',
-      count: 4,
-    },
-    {
-      countryId: 2,
-      countryTitle: 'USA',
-      count: 4,
-    },
-    {
-      countryId: 3,
-      countryTitle: 'Italia',
-      count: 2,
-    },
-    {
-      countryId: 4,
-      countryTitle: 'Ukraine',
-      count: 2,
-    },
-    {
-      countryId: 5,
-      countryTitle: 'Spain',
-      count: 2,
-    },
-  ]);
+export const getCountries = (init?: RequestInit) => {
+  return sendRequest<Country[]>(buildUrl('countries'), init);
 };
